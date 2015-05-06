@@ -16,59 +16,46 @@
   <body ng-controller="madlibctrl">
     <header>
       <h1>Mad Lib Generator</h1>
+      <p>Ever heard of MadLibs? Mad Libs is a phrasal template word game where one player prompts others for a list of words to substitute for blanks in a story, before reading the – often comical or nonsensical – story aloud. The game is frequently played as a party game or as a pastime.
+
+      The game was invented in the United States, and more than 110 million copies of Mad Libs books have been sold since the series was first published in 1958. Follow this link for more information: <a href="http://en.wikipedia.org/wiki/Mad_Libs">http://en.wikipedia.org/wiki/Mad_Libs</a></p>
     </header>
-    <form action="index.php" method="post" class="form-horizontal">
+    <form>
       <div class="form-group">
-        <label class="col-sm-2 control-label" >Nouns:</label>
-        <div class="col-sm-4">
+        <label class="col-sm-1 col-sm-offset-3" >Nouns:</label>
+        <div class="col-sm-5">
           <input ng-model="nouns" type="text" class="form-control" placeholder="noun, noun, noun, noun" name="Nouns">
         </div>
       </div>
       <div class="form-group">
-        <label class="col-sm-2 control-label" >Adjectives:</label>
-        <div class="col-sm-4">
+        <label class="col-sm-1 col-sm-offset-3" >Adjectives:</label>
+        <div class="col-sm-5">
           <input ng-model="adjectives" type="text" class="form-control" placeholder="adjective, adjective, adjective, adjective" name="Adjectives">
         </div>
       </div>
       <div class="form-group">
-        <label class="col-sm-2 control-label">Adverbs: </label> 
-        <div class="col-sm-4">
+        <label class="col-sm-1 col-sm-offset-3">Adverbs: </label> 
+        <div class="col-sm-5">
           <input ng-model="adverbs" type="text" class="form-control" placeholder="adverb, adverb, adverb, adverb" name="Adverbs">
         </div>
       </div>
       <div class="form-group">
-        <label class="col-sm-2 control-label">Verb:</label> 
-        <div class="col-sm-4">
+        <label class="col-sm-1 col-sm-offset-3">Verb:</label> 
+        <div class="col-sm-5">
           <input ng-model="verbs" type="text" class="form-control" placeholder="verb, verb, verb, verb" name="Verbs">
         </div>
       </div>
-    <div class="row">
-    <div class="col-sm-2"></div>
-    <div class="col-sm-2">
-      <div class="checkbox ">
-        <label>
-          <input type="checkbox" name="Shopping" value="">
-          Going Shopping
-        </label>
-      </div>
-      <div class="checkbox ">
-        <label>
-          <input type="checkbox" name="BrainStorming" value="">
-          Brain Storming
-        </label>
-      </div>
-      <div class="checkbox ">
-        <label>
-          <input type="checkbox" name="ChristmasTree" value="">
-          Christmas Tree
-        </label>
-      </div>
-
-      <input type="submit" class="btn btn-primary" value="Submit">
-    </div>
-    </div>  
-      
-      
+	    <div class="row">
+		      <div class="col-sm-2 col-sm-offset-6">
+		        <div ng-repeat="story in stories" class="checkbox ">
+			        <label>
+		            <input ng-model="" type="checkbox" name="{{story.name}}" value="1">
+		            {{story.name}}yoyo
+		          </label>
+		        </div>
+		        <input type="submit" class="btn btn-primary" value="Submit">
+		      </div>
+	    	</div>  
     </form>
     <div>
       
