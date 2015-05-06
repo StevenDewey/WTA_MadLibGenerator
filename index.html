@@ -1,14 +1,77 @@
-!doctype html>
+<!doctype html>
 <html ng-app="madlibapp">
   <head>
-    
+    <title>Mad Lib Generator</title>
+    <link rel='shortcut icon' type='image/x-icon' href='assets/favicon.ico' />
+    <link rel="stylesheet" href="style.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
   </head>
   <body ng-controller="madlibctrl">
+    <header>
+      <h1>Mad Lib Generator</h1>
+    </header>
+    <form action="index.php" method="post" class="form-horizontal">
+      <div class="form-group">
+        <label class="col-sm-2 control-label" >Nouns:</label>
+        <div class="col-sm-4">
+          <input ng-model="nouns" type="text" class="form-control" placeholder="noun, noun, noun, noun" name="Nouns">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label" >Adjectives:</label>
+        <div class="col-sm-4">
+          <input ng-model="adjectives" type="text" class="form-control" placeholder="adjective, adjective, adjective, adjective" name="Adjectives">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Adverbs: </label> 
+        <div class="col-sm-4">
+          <input ng-model="adverbs" type="text" class="form-control" placeholder="adverb, adverb, adverb, adverb" name="Adverbs">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Verb:</label> 
+        <div class="col-sm-4">
+          <input ng-model="verbs" type="text" class="form-control" placeholder="verb, verb, verb, verb" name="Verbs">
+        </div>
+      </div>
+    <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-2">
+      <div class="checkbox ">
+        <label>
+          <input type="checkbox" name="Shopping" value="">
+          Going Shopping
+        </label>
+      </div>
+      <div class="checkbox ">
+        <label>
+          <input type="checkbox" name="BrainStorming" value="">
+          Brain Storming
+        </label>
+      </div>
+      <div class="checkbox ">
+        <label>
+          <input type="checkbox" name="ChristmasTree" value="">
+          Christmas Tree
+        </label>
+      </div>
+
+      <input type="submit" class="btn btn-primary" value="Submit">
+    </div>
+    </div>  
+      
+      
+    </form>
     <div>
-      <label>Name:</label>
-      <input type="text" ng-model="yourName" placeholder="Enter a name here">
-      <hr>
-      <h1>Hello {{yourName}}!</h1>
+      
     </div>
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
