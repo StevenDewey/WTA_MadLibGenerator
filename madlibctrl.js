@@ -3,18 +3,15 @@ var app = angular.module('madlibapp', []);
 app.controller('madlibctrl', ['$scope', function($scope){
 
 	$scope.displayStory = function(){
-		for (checkbox in $scope.checkboxes){
-			if($scope.checkboxes[checkbox]){
-				$scope.currentStory = $scope.stories[checkbox];
-			}
-		}
+		$scope.currentStory = $scope.stories[$scope.checkedStory.index];
 	}
 
 	// ARRAYS FOR NOUNS, ADJECTIVES, ADVERBS, VERBS
-	$scope.nouns = ['MATT'];//,'STEVEN','JOHN','ERIC','SARAH','ZACK'];
-	$scope.adjectives = ['MATT'];//,'STEVEN','JOHN','ERIC','SARAH','ZACK'];
-	$scope.adverbs = ['MATT'];//,'STEVEN','JOHN','ERIC','SARAH','ZACK'];
-	$scope.verbs = ['MATT'];//,'STEVEN','JOHN','ERIC','SARAH','ZACK'];
+	$scope.nouns = [];//,'STEVEN','JOHN','ERIC','SARAH','ZACK'];
+	$scope.adjectives = [];//,'STEVEN','JOHN','ERIC','SARAH','ZACK'];
+	$scope.adverbs = [];//,'STEVEN','JOHN','ERIC','SARAH','ZACK'];
+	$scope.verbs = [];//,'STEVEN','JOHN','ERIC','SARAH','ZACK'];
+	$scope.checkedStory={};
 
 	var finalNouns = [];
 	var finalAdjectives = [];
