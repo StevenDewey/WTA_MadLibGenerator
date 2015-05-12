@@ -5,6 +5,7 @@ app.controller('madlibctrl', ['$scope', function($scope){
 	$scope.displayStory = function(){
 		clearAll();
 		stringsToArrays();
+		addOtherWords();
 		getRandomWords();
 		$scope.currentStory = getStory($scope.checkedStory.index);
 	}
@@ -14,7 +15,7 @@ app.controller('madlibctrl', ['$scope', function($scope){
 			case 0:
 				return 'Every Christmas we ' + finalVerbs[0] + ' to a ' + finalAdjectives[0] + ' tree farm far away.'+
 					'This is not just any ' + finalAdjectives[1] + ' tree farm. My dad and I ' + finalVerbs[1] +
-					'onto the ' + finalNouns[0] + ' to ' + finalVerbs[2] + ' for the perfect ' + finalNouns[1] + '. '+
+					' onto the ' + finalNouns[0] + ' to ' + finalVerbs[2] + ' for the perfect ' + finalNouns[1] + '. '+
 					'Some people like them ' + finalAdjectives[2] + ', but I prefer them ' + finalAdjectives[3] + '. After '+
 					'searching for hours I usually ' + finalAdverbs[0] + ' exclaim "Dad! The perfect tree is over '+
 					'there!" Off we ' + finalVerbs[3] + ' to get the tree. The problem is we always forget the '+
@@ -48,13 +49,72 @@ app.controller('madlibctrl', ['$scope', function($scope){
 		adjectives = $scope.adjectives.split(',');
 		adverbs = $scope.adverbs.split(',');
 		verbs = $scope.verbs.split(',');
+		removeEmptyStrings();
+	}
+
+	function removeEmptyStrings(){
+		var index = nouns.indexOf('');
+		if(index != -1){
+			nouns.splice(index,1);
+		}
+		index = adverbs.indexOf('');
+		if(index != -1){
+			adverbs.splice(index,1);
+		}
+		index = adjectives.indexOf('');
+		if(index != -1){
+			adjectives.splice(index,1);
+		}
+		index = verbs.indexOf('');
+		if(index != -1){
+			verbs.splice(index,1);
+		}
+	}
+
+	function addOtherWords(){
+		if(nouns.length < 4){
+			while(nouns.length !== 6){
+				var randInd = Math.floor(Math.random()*predefinedNouns.length);
+				var word = predefinedNouns[randInd].trim();
+				if(nouns.indexOf(word) == -1){
+					nouns.push(word);
+				}
+			}
+		}
+		if(adverbs.length < 4){
+			while(adverbs.length !== 6){
+				var randInd = Math.floor(Math.random()*predefinedAdverbs.length);
+				var word = predefinedAdverbs[randInd].trim();
+				if(adverbs.indexOf(word) == -1){
+					adverbs.push(word);
+				}
+			}
+		}
+		if(adjectives.length < 4){
+			while(adjectives.length !== 6){
+				var randInd = Math.floor(Math.random()*predefinedAdjectives.length);
+				var word = predefinedAdjectives[randInd].trim();
+				if(adjectives.indexOf(word) == -1){
+					adjectives.push(word);
+				}
+			}
+		}
+		if(verbs.length < 4){
+			while(verbs.length !== 6){
+				var randInd = Math.floor(Math.random()*predefinedVerbs.length);
+				var word = predefinedVerbs[randInd].trim();
+				if(verbs.indexOf(word) == -1){
+					verbs.push(word);
+				}
+			}
+		}
 	}
 
 	// ARRAYS FOR NOUNS, ADJECTIVES, ADVERBS, VERBS
-	// $scope.nouns = [];//,'STEVEN','JOHN','ERIC','SARAH','ZACK'];
-	// $scope.adjectives = [];//,'STEVEN','JOHN','ERIC','SARAH','ZACK'];
-	// $scope.adverbs = [];//,'STEVEN','JOHN','ERIC','SARAH','ZACK'];
-	// $scope.verbs = [];//,'STEVEN','JOHN','ERIC','SARAH','ZACK'];
+	$scope.nouns = '';//,'STEVEN','JOHN','ERIC','SARAH','ZACK'];
+	$scope.adjectives = '';//,'STEVEN','JOHN','ERIC','SARAH','ZACK'];
+	$scope.adverbs = '';//,'STEVEN','JOHN','ERIC','SARAH','ZACK'];
+	$scope.verbs = '';//,'STEVEN','JOHN','ERIC','SARAH','ZACK'];
 	$scope.checkedStory={};
 
 	var nouns = [];
@@ -65,6 +125,37 @@ app.controller('madlibctrl', ['$scope', function($scope){
 	var finalAdjectives = [];
 	var finalAdverbs = [];
 	var finalVerbs = [];
+	var predefinedNouns = ['cow','cub','cup','dad','day','dog','doll','dust','fan','feet','girl','gun','hall','hat','hen','jar','kite','man','map','men','mom','pan','pet','pie','pig','pot','rat','son','sun','toe','tub','van','apple','arm','banana','bike','bird','book','chin','clam','class','clover','club','corn','crayon','crow','crown','crowd','crib','desk','dime','dirt','dress','fang' ,'field',
+			'flag','flower','fog','game','heat','hill','home','horn','hose','joke','juice','kite','lake','maid','mask','mice','milk','mint','meal','meat','moon','mother','morning','name','nest','nose','pear','pen','pencil','plant','rain','river','road','rock','room','rose','seed','shape','shoe','shop','show','sink','snail','snake','snow','soda','sofa','star','step','stew','stove','straw','string','summer','swing','table','tank','team','tent','test','toes','tree','vest','water','wing','winter','woman','women',
+			'alarm','animal','aunt','bait','balloon','bath','bead','beam','bean','bedroom','boot','bread','brick','brother','camp','chicken','children','crook','deer','dock','doctor','downtown','drum','dust','eye','family','father','fight','flesh','food','frog','goose','grade','grandfather','grandmother','grape','grass','hook','horse','jail','jam','kiss','kitten'
+	];
+	var predefinedAdverbs = ['innocently','inquisitively','instantly','intensely','intently','meaningfully','mechanically','merrily',
+		'miserably','mockingly','monthly','more','mortally','separatel','seriously','shakily','sharpl','sheepishly','shrilly','shyly',
+		'silently','sleepily','slowly','smoothly','softl','solemnly','solidl','sometimes','bitterl','bleakl','blindly','blissfull',
+		'boastfully','boldly','bravely','briefly','brightly','briskly'
+	];
+	var predefinedAdjectives = [
+		'best','better','bewildered ','big','billowy ','bite-sized','bitter','bizarre ','black','black-and-white','bloody ','blue',
+		'blue-eyed ','blushing ','complex','concerned ','condemned ','confused ','conscious','cooing ','cool ','cooperative ',
+		'coordinated','courageous ','cowardly ','crabby ','craven ','crazy ','creepy ','incandescent ','incompetent ','inconclusive ',
+		'industrious ','incredible','inexpensive','infamous','innate ','innocent ','inquisitive ','insidious','instinctive ','nonstop ',
+		'normal','nostalgic ','nosy','noxious ','null ','numberless ','numerous','nutritious ','sad','safe','salty','same','sassy ',
+		'satisfying ','savory '
+	];
+	var predefinedVerbs = [
+		'annoy ','answer ','anticipate','apologize ','appear','applaud ','applied','appoint','appraise','appreciate ','approve ',
+		'arbitrate','argue ','arise','arrange ','arrest ','choose','chop ','claim ','clap','clarify','classify','clean ','clear ',
+		'cling','clip ','close ','clothe','coach ','coil ','delight','deliver ','demonstrate','depend ','describe ','desert ','deserve '
+		,'design','destroy ','detail','detect ','determine','develop ','devise','diagnose','dig','paste ','pat ','pause ','pay','peck ',
+		'pedal ','peel ','peep ','perceive','perfect','perform','permit ','persuade','phone ','photograph','pick ','pilot','pinch ',
+		'pine ','pinpoint','pioneer','place ','plan ','plant ','play ','plead','please ','plug ','point ','poke ','polish','pop ',
+		'possess ','post ','pour ','practice ','praised','pray ','preach ','precede ','predict','prefer ','prepare ','prescribe',
+		'present ','preserve ','preset','preside','press ','pretend','prevent ','prick ','print ','process','procure','produce ',
+		'profess','program ','progress','project','promise ','promote','proofread','propose','protect ','prove','provide ','publicize',
+		'pull ','pump ','punch ','puncture ','punish ','purchase','push','slay','sleep','slide','sling','slink','slip ','slit','slow ',
+		'smash ','smell','smile ','smite','smoke ','snatch ','sneak','weep','weigh ','welcome ','wend','wet','whine ','whip','whirl ',
+		'whisper ','whistle ','win','wind'
+	];
 
 	function clearAll(){
 		nouns = [];
