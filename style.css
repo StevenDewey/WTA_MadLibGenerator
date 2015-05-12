@@ -1,0 +1,28 @@
+body {
+	width: 1400px;
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
+header h1{
+	text-align: center;
+	margin-bottom: 100px;
+	margin-top:50px;
+}
+
+header p {
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 50px;
+}
+
+.form-group{
+	margin-bottom: 25px !important;
+}
+
+.story {
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}

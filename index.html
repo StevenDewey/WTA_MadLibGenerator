@@ -1,14 +1,63 @@
 <!doctype html>
 <html ng-app="madlibapp">
   <head>
-    
+    <title>Mad Lib Generator</title>
+    <link rel='shortcut icon' type='image/x-icon' href='assets/favicon.ico' />
+    <link rel="stylesheet" href="style.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
   </head>
   <body ng-controller="madlibctrl">
-    <div>
-      <label>Name:</label>
-      <input type="text" ng-model="yourName" placeholder="Enter a name here">
-      <hr>
-      <h1>{{stories[0].text}}</h1>
+    <header>
+      <h1>Mad Lib Generator</h1>
+      <p>Ever heard of MadLibs? Mad Libs is a phrasal template word game where one player prompts others for a list of words to substitute for blanks in a story, before reading the – often comical or nonsensical – story aloud. The game is frequently played as a party game or as a pastime.
+
+      The game was invented in the United States, and more than 110 million copies of Mad Libs books have been sold since the series was first published in 1958. Follow this link for more information: <a href="http://en.wikipedia.org/wiki/Mad_Libs">http://en.wikipedia.org/wiki/Mad_Libs</a></p>
+    </header>
+    <form>
+      <div class="form-group">
+        <label class="col-sm-1 col-sm-offset-3" >Nouns:</label>
+        <div class="col-sm-5">
+          <input ng-model="nouns" type="text" class="form-control" placeholder="noun, noun, noun, noun" name="Nouns">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-1 col-sm-offset-3" >Adjectives:</label>
+        <div class="col-sm-5">
+          <input ng-model="adjectives" type="text" class="form-control" placeholder="adjective, adjective, adjective, adjective" name="Adjectives">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-1 col-sm-offset-3">Adverbs: </label> 
+        <div class="col-sm-5">
+          <input ng-model="adverbs" type="text" class="form-control" placeholder="adverb, adverb, adverb, adverb" name="Adverbs">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-1 col-sm-offset-3">Verb:</label> 
+        <div class="col-sm-5">
+          <input ng-model="verbs" type="text" class="form-control" placeholder="verb, verb, verb, verb" name="Verbs">
+        </div>
+      </div>
+	    <div class="row">
+		      <div class="col-sm-2 col-sm-offset-6">
+            <div ng-repeat="story in stories">
+              <input type="radio" name="stories" ng-value="$index" ng-model="checkedStory.index">
+              {{story.name}}
+            </div>
+		        
+		        <button class="btn btn-primary" ng-click="displayStory()">Submit</button>
+		      </div>
+	    	</div>  
+    </form>
+    <div class="story">
+      {{currentStory}}
     </div>
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
